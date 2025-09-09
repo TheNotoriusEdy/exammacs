@@ -42,6 +42,9 @@
   <div class="container-fluid">
     <a class="navbar-brand" href="#">👤 Paciente</a>
     <span class="text-white">Bienvenido, Ana López</span>
+    <form action="/controladores/logout.php" method="post" class="ms-auto">
+      <button type="submit" class="btn btn-danger btn-sm ms-2">Cerrar sesión</button>
+    </form>
   </div>
 </nav>
 

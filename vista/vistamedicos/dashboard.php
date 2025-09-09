@@ -8,12 +8,15 @@
  
 </head>
 <body>
-
+    
 
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">👨‍⚕️ Dashboard Médico</a>
-    <span class="text-white">Bienvenido, Dr. Pérez</span>
+    <span class="text-white">Bienvenido, Ana López</span>
+    <form action="/controladores/logout.php" method="post" class="ms-auto">
+      <button type="submit" class="btn btn-danger btn-sm ms-2">Cerrar sesión</button>
+    </form>
   </div>
 </nav>
 
