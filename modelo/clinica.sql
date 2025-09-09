@@ -50,6 +50,9 @@ CREATE TABLE citas (
     FOREIGN KEY (medico_id) REFERENCES medicos (medico_id)
 );
 
+INSERT INTO usuarios ( nombre, email, password_hash, rol_id) VALUES
+('Admin', 'admin@correo.com','hola123', 1)
+
 -- Índices para mejorar el rendimiento de las consultas
 CREATE INDEX idx_usuarios_rol_id ON usuarios (rol_id);
 CREATE INDEX idx_medicos_especialidad ON medicos (especialidad);
