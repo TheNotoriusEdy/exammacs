@@ -5,11 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Paciente - Agenda Médica</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
- 
+  <style>
+    body {
+      background: #f4f6f9;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .navbar {
+      background-color: #0d6efd;
+    }
+    .navbar-brand {
+      font-weight: bold;
+      color: #fff !important;
+    }
+    .table thead {
+      background-color: #0d6efd;
+      color: #fff;
+    }
+    .card {
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+  </style>
 </head>
 <body>
 
-
+<!-- Barra superior -->
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">👤 Paciente</a>
@@ -19,16 +39,15 @@
 
 <div class="container mt-4">
   <div class="row">
-
+    <!-- Formulario para agendar -->
     <div class="col-md-5">
       <div class="card p-4">
         <h4 class="text-center mb-3">📅 Agendar Cita</h4>
         <form id="appointmentForm">
           <div class="mb-3">
-  <label class="form-label">Nombre</label>
-  <input type="text" class="form-control" id="patientName" placeholder="Escribe tu nombre" required>
-</div>
-
+            <label class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="patientName" value="Ana López" readonly>
+          </div>
           <div class="mb-3">
             <label class="form-label">Especialidad</label>
             <select class="form-select" id="specialty" required>
@@ -76,7 +95,7 @@
             </tr>
           </thead>
           <tbody>
-           
+            <!-- Aquí se agregan las citas dinámicamente -->
           </tbody>
         </table>
       </div>
@@ -84,6 +103,7 @@
   </div>
 </div>
 
+<!-- Modal para reprogramar -->
 <div class="modal fade" id="rescheduleModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content p-3">
@@ -131,6 +151,7 @@
     `;
     table.appendChild(row);
 
+    alert(`⚠️ Cita agendada con ${doctor} el ${date} a las ${time}`); // alerta al agendar
     form.reset();
   });
 
@@ -138,7 +159,8 @@
   function cancelarCita(btn){
     const row = btn.closest("tr");
     row.querySelector("td:nth-child(5)").innerHTML = '<span class="badge bg-danger">Cancelada</span>';
-    row.querySelector("td:nth-child(6)").innerHTML = '---'; // elimina botones
+    row.querySelector("td:nth-child(6)").innerHTML = '---';
+    alert(`❌ Cita cancelada`); // alerta al cancelar
   }
 
   // Abrir modal reprogramar
@@ -157,6 +179,7 @@
       selectedRow.querySelector("td:nth-child(3)").textContent = newDate;
       selectedRow.querySelector("td:nth-child(4)").textContent = newTime;
       selectedRow.querySelector("td:nth-child(5)").innerHTML = '<span class="badge bg-info">Reprogramada</span>';
+      alert(`🔄 Cita reprogramada al ${newDate} a las ${newTime}`); // alerta al reprogramar
     }
     const modal = bootstrap.Modal.getInstance(document.getElementById("rescheduleModal"));
     modal.hide();
