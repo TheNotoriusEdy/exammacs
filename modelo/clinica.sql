@@ -1,24 +1,26 @@
--- Creación de la tabla 'roles' para definir los tipos de usuarios (Admin, Medico, Paciente)
+USE clinica;
+
+-- Creación de la tabla 'roles'
 CREATE TABLE roles (
-    rol_id SERIAL PRIMARY KEY,
+    rol_id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) UNIQUE NOT NULL
 );
 
 -- Inserción de los roles predefinidos
 INSERT INTO roles (nombre) VALUES ('Administrador'), ('Medico'), ('Paciente');
 
--- Creación de la tabla 'usuarios' para la autenticación y datos básicos
+-- Creación de la tabla 'usuarios'
 CREATE TABLE usuarios (
-    usuario_id SERIAL PRIMARY KEY,
+    usuario_id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
     rol_id INT NOT NULL,
-    fecha_creacion TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (rol_id) REFERENCES roles (rol_id)
 );
 
--- Creación de la tabla 'medicos' con información específica para médicos
+-- Creación de la tabla 'medicos'
 CREATE TABLE medicos (
     medico_id INT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
@@ -28,7 +30,7 @@ CREATE TABLE medicos (
     FOREIGN KEY (medico_id) REFERENCES usuarios (usuario_id) ON DELETE CASCADE
 );
 
--- Creación de la tabla 'pacientes' con información específica para pacientes
+-- Creación de la tabla 'pacientes'
 CREATE TABLE pacientes (
     paciente_id INT PRIMARY KEY,
     fecha_nacimiento DATE,
@@ -36,12 +38,12 @@ CREATE TABLE pacientes (
     FOREIGN KEY (paciente_id) REFERENCES usuarios (usuario_id) ON DELETE CASCADE
 );
 
--- Creación de la tabla 'citas' para programar las citas médicas
+-- Creación de la tabla 'citas'
 CREATE TABLE citas (
-    cita_id SERIAL PRIMARY KEY,
+    cita_id INT AUTO_INCREMENT PRIMARY KEY,
     paciente_id INT NOT NULL,
     medico_id INT NOT NULL,
-    fecha_hora TIMESTAMP WITH TIME ZONE NOT NULL,
+    fecha_hora TIMESTAMP NOT NULL,
     estado VARCHAR(50) NOT NULL DEFAULT 'Pendiente',
     motivo TEXT,
     FOREIGN KEY (paciente_id) REFERENCES pacientes (paciente_id),
