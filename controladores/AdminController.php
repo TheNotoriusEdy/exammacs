@@ -1,5 +1,5 @@
 <?php
-require_once 'AuthController.php';
+require_once 'LoginController.php';
 
 class AdminController {
     private $auth;
