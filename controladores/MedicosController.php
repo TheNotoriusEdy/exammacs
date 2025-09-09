@@ -1,6 +1,6 @@
 <?php
 
-require_once 'AuthController.php';
+require_once 'LoginController.php';
 
 class MedicoController {
     private $auth;
