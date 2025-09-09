@@ -1,3 +1,10 @@
+<?php
+require_once 'controladores/MedicosController.php';
+require_once 'config/db.php'; // Aquí debes tener tu conexión PDO en $pdo
+
+$medicoController = new MedicoController($pdo);
+$medicoController->procesarFormulario();
+?>
 <!doctype html>
 <html lang="es">
 <head>
@@ -5,21 +12,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Dashboard Médico - Agenda Médica</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
- 
 </head>
 <body>
-
-
+    
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">👨‍⚕️ Dashboard Médico</a>
-    <span class="text-white">Bienvenido, Dr. Pérez</span>
+    <span class="text-white">Bienvenido, Ana López</span>
+    <form action="/controladores/logout.php" method="post" class="ms-auto">
+      <button type="submit" class="btn btn-danger btn-sm ms-2">Cerrar sesión</button>
+    </form>
   </div>
 </nav>
 
 <div class="container mt-4">
   <h3 class="text-center mb-4">📅 Mis Citas de Hoy</h3>
   
+  <!-- Formulario para guardar médico -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <form method="POST" action="">
+        <div class="row mb-2">
+          <div class="col-md-3">
+            <input type="text" name="nombre" class="form-control" placeholder="Nombre" required>
+          </div>
+          <div class="col-md-3">
+            <input type="text" name="especialidad" class="form-control" placeholder="Especialidad" required>
+          </div>
+          <div class="col-md-3">
+            <input type="text" name="horario_atencion" class="form-control" placeholder="Horario de atención">
+          </div>
+          <div class="col-md-3">
+            <input type="text" name="licencia" class="form-control" placeholder="Licencia" required>
+          </div>
+        </div>
+        <input type="hidden" name="usuario_id" value="<?php echo $_SESSION['usuario_id'] ?? ''; ?>">
+        <button type="submit" class="btn btn-primary">Guardar Médico</button>
+      </form>
+    </div>
+  </div>
+  <!-- Fin del formulario -->
+
   <div class="card shadow">
     <div class="card-body">
       <table class="table table-bordered text-center align-middle" id="appointmentsTable">
@@ -79,7 +112,6 @@ function marcarRealizada(btn){
   estadoCell.innerHTML = '<span class="badge bg-success">Realizada</span>';
   btn.remove(); 
 
-  
   const modal = new bootstrap.Modal(document.getElementById("doneModal"));
   modal.show();
 }
