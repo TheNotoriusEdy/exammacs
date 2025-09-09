@@ -93,9 +93,9 @@ document.getElementById("loginForm").addEventListener("submit", function(e){
     modal.show();
 
     setTimeout(()=>{
-  if(role === "paciente") window.location.href = "vistauser/dashboard.php?role=paciente";
-  if(role === "medico")  window.location.href = "vistamedicos/dashboard.php?role=medico";
-  if(role === "administrador")   window.location.href = "vistaadmin/dashboard.php?role=administrador";
+  if(role === "Paciente") window.location.href = "vistauser/dashboard.php?role=paciente";
+  if(role === "Medico")  window.location.href = "vistamedicos/dashboard.php?role=medico";
+  if(role === "Administrador")   window.location.href = "vistaadmin/dashboard.php?role=administrador";
 },2500);
   } else {
     alert("Completa todos los campos");
