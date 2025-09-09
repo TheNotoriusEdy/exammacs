@@ -21,7 +21,9 @@ CREATE TABLE usuarios (
 -- Creación de la tabla 'medicos' con información específica para médicos
 CREATE TABLE medicos (
     medico_id INT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
     especialidad VARCHAR(100) NOT NULL,
+    horario_atencion VARCHAR(100),
     licencia VARCHAR(50) UNIQUE NOT NULL,
     FOREIGN KEY (medico_id) REFERENCES usuarios (usuario_id) ON DELETE CASCADE
 );
