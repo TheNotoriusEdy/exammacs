@@ -93,10 +93,10 @@ document.getElementById("loginForm").addEventListener("submit", function(e){
     modal.show();
 
     setTimeout(()=>{
-      if(role === "patient") window.location.href = "Agenda_Medica_Sistema.html?role=patient";
-      if(role === "doctor")  window.location.href = "Agenda_Medica_Sistema.html?role=doctor";
-      if(role === "admin")   window.location.href = "Agenda_Medica_Sistema.html?role=admin";
-    },2500);
+  if(role === "patient") window.location.href = "vistauser/dashboard.php?role=patient";
+  if(role === "doctor")  window.location.href = "vistamedicos/dashboard.php?role=doctor";
+  if(role === "admin")   window.location.href = "vistaadmin/dashboard.php?role=admin";
+},2500);
   } else {
     alert("Completa todos los campos");
   }
